@@ -25,10 +25,23 @@ $(function () {
   // 送信ボタンクリック時の処理
   $('#submit').on('click', function (event) {
     // formタグによる送信を拒否
-    event.preventDefoult();
+    event.preventDefault();
 
     // 入力チェックをした結果をresultに格納
     let result = inputCheck();
+
+    // エラー判定とメッセージを取得
+    let error = result.error;
+    let message = result.message;
+
+    // エラーが無かったらフォームを送信する
+    if (error == false) {
+      // フォーム送信は実際には行わず、送信成功メッセージのみ表示する
+      alert('お問い合わせを送信しました。')
+    } else {
+      // エラーメッセージを表示する
+      alert(message);
+    }
   });
 
   // フォーカスが外れたとき(blur)にフォームの入力チェックをする
